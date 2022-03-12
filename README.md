@@ -51,3 +51,26 @@ REST_FRAMEWORK = {
 ```
 
 The page_size of 10 will display 10 objects at a time
+
+### book_app.urls.py
+
+```Python
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.BookListView.as_view()),
+    path('<str:name>/', views.BookDetailView.as_view()),
+]
+```
+
+### Sending URLs
+
+```
+1. http://localhost:8000/?name="<book_name>"
+
+2. http://localhost:8000/?genre="<genre(s)>" (seperated by a comma)
+```
+1. Returns a single book with the name 
+2. Returns the list of books with the genre(s) searched by
