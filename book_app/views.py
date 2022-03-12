@@ -1,4 +1,3 @@
-from cgitb import lookup
 from rest_framework import generics
 
 from .models import Book
@@ -11,9 +10,9 @@ class BookListView(generics.ListAPIView):
     def get_queryset(self):
         queryset = Book.objects.all()
         genre = self.request.query_params.get('genre')
-        print(genre)
+        
         if genre is not None:
-            queryset = queryset.filter(genre = genre)
+            queryset = queryset.filter(genre__genre = genre)
         return queryset
 
 
