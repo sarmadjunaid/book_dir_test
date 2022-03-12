@@ -26,10 +26,11 @@ class BookListView(generics.ListAPIView):
 
     def get_queryset(self):
         queryset = Book.objects.all()
-        genre = self.request.query_params.get('genre')
+        genres = self.request.query_params.get('genre')
         
-        if genre is not None:
-            queryset = queryset.filter(genre__genre = genre)
+        if genres is not None:
+            genre_list = genres.split(',')
+            queryset = queryset.filter(genres__genre__in = genre_list)
         return queryset
 
 

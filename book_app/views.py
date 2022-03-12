@@ -13,9 +13,7 @@ class BookListView(generics.ListAPIView):
         
         if genres is not None:
             genre_list = genres.split(',')
-            print(genre_list)
             queryset = queryset.filter(genres__genre__in = genre_list)
-            print(set(queryset))
         return queryset
 
 
